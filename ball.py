@@ -45,7 +45,6 @@ while state==True:
     ball.checkx_v()
     ball.checky_v()
     ball.move()
-    print(ball.y_v,ball.y)
     ball.display()
     pygame.display.update()
     clock.tick(60)
