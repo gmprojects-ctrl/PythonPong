@@ -1,7 +1,7 @@
 import pygame
 #Initialising the Environment
-width = 1280  #Width and height of the screen
-height = 720
+width = 640  #Width and height of the screen
+height = 480
 pygame.init()
 screen = pygame.display.set_mode((width, height))  #Initialising the screen
 pygame.display.set_caption("Pong")
@@ -93,10 +93,10 @@ class Block:
         centre_x = self.x + 0.5 * self.width
         centre_y = self.y - 0.5 * self.height
         angle = abs(centre_y - ball.y / centre_x - ball.x)
-        if (ball.x_v > 0):
-            if (angle > ((1 / 2)**0.5) and ball.y < centre_y):
+        if (ball.x_v > 0 and angle > 0.7 ):
+            if (ball.y < centre_y):
                 self.y -= self.v
-            elif (angle > ((1 / 2)**0.5) and ball.y > centre_y):
+            elif ( ball.y > centre_y):
                 self.y += self.v
             else:
                 pass
@@ -179,16 +179,17 @@ class Ball:
 
 
 #Initialising the Classes and variables
+player_speed = 5
 ball = Ball(
     int(width / 2),
     int(height / 2),
-    5,
-    5,
+    player_speed/2,
+    player_speed/2,
     10,
 )
 player_speed = 5
 player = Block(20, 100, 50, 50, player_speed)
-enemy = Block(20, 100, width - player.x, player.y,player_speed)
+enemy = Block(20, 100, width - player.x, player.y, player_speed)
 winscore = 5
 #Main game
 state = True
